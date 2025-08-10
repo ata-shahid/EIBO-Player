@@ -1,17 +1,22 @@
 package controller;
 
+import business.PlaylistManager;
 import de.hsrm.mi.prog.util.StaticScanner;
+import entities.Playlist;
 import player.MP3Player;
 
 public class KeyboardController {
 
-    private static final String SONGS_PATH = "src/main/resources/songs/";
+    private static final String SONGS_PATH = "src/main/resources/songs/"; // TODO: Fix path resolution
     private static final String MP3_EXTENSION = ".mp3";
 
     private MP3Player mp3Player = new MP3Player();
     private String input;
 
     public void start() {
+        PlaylistManager manager = new PlaylistManager();
+        Playlist playlist = manager.getAllTracks();
+        mp3Player.setPlaylist(playlist);
         while (true) {
             System.out.println("Enter the command: ");
             input = StaticScanner.nextString();
@@ -38,6 +43,13 @@ public class KeyboardController {
                 case "pause":
                     mp3Player.pause();
                     break;
+                case "skip":
+                    mp3Player.skip();
+                    break;
+                case "skip back":
+                    mp3Player.skipBack();
+                    break;
+
                 case "volume":
                     if (parameter != null && !parameter.isEmpty()) {
                         try {
@@ -57,7 +69,16 @@ public class KeyboardController {
                     return;
                 default:
                     System.out.println("Unknown command: " + command);
-                    System.out.println("Available commands: play [filename], play, pause, volume [0.0-1.0], quit");
+                    System.out.println("Available commands:");
+                    System.out.println("- play               → plays current track from playlist");
+                    System.out.println("- play [filename]*   → plays specified file (not from playlist)");
+                    System.out.println("- pause              → pauses current track");
+                    System.out.println("- skip               → plays next track in playlist");
+                    System.out.println("- skip back          → plays previous track in playlist");
+                    System.out.println("- volume [0.0–1.0]   → sets playback volume");
+                    System.out.println("- quit               → exits the player");
+                    System.out.println("* [filename] must match a file in /songs/ folder without '.mp3'");
+
                     break;
             }
         }

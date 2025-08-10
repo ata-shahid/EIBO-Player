@@ -14,7 +14,7 @@ import entities.Track;
 
 public class PlaylistManager {
 
-    private static final String SONGS_PATH = "src/main/resources/songs/";
+    private static final String SONGS_PATH = "src/main/resources/songs/";// TODO: Fix path resolution
 
     public Playlist getAllTracks() {
 
@@ -40,6 +40,8 @@ public class PlaylistManager {
         return playlist;
 
     }
+    // TODO:M3U file loading
+    // public Playlist getPlaylist(String name)
 
     public Track createTrack(File file) {
         try {

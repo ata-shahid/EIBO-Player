@@ -27,8 +27,10 @@ public class Playlist {
     }
 
     public Track getTrack(int index) {
-        Track track = tracks.get(index);
-        return track;
+        if (index < 0 || index >= tracks.size()) {
+            throw new IndexOutOfBoundsException("Track index out of bounds");
+        }
+        return tracks.get(index);
     }
 
     public String getPlaylistName() {
