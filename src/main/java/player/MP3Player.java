@@ -27,12 +27,18 @@ public class MP3Player {
     }
 
     public void play() {
-        if (aktPlaylist != null) {
+        if (aktPlaylist != null && aktPlaylist.numberOfTracks() > 0) {
+            if (aktTrackNr < 0) {
+                aktTrackNr = 0;
+            } else if (aktTrackNr >= aktPlaylist.numberOfTracks()) {
+                aktTrackNr = aktPlaylist.numberOfTracks() - 1;
+            }
             if (audioPlayer != null && audioPlayer.isPlaying()) {
                 pause();
             }
 
             Track aktTrack = aktPlaylist.getTrack(aktTrackNr);
+
             String soundFile = aktTrack.getSoundFile();
             if (loadedSoundFile == null || !loadedSoundFile.equalsIgnoreCase(soundFile)) {
                 audioPlayer = minim.loadMP3File(soundFile);
@@ -73,6 +79,8 @@ public class MP3Player {
             int lastIndex = aktPlaylist.numberOfTracks() - 1;
             if (aktTrackNr < lastIndex) {
                 aktTrackNr += 1;
+            } else {
+                aktTrackNr = 0;
             }
             play();
 
@@ -85,6 +93,8 @@ public class MP3Player {
 
             if (aktTrackNr > 0) {
                 aktTrackNr -= 1;
+            } else {
+                aktTrackNr = aktPlaylist.numberOfTracks() - 1;
             }
             play();
 
