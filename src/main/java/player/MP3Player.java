@@ -10,6 +10,7 @@ public class MP3Player {
     private SimpleAudioPlayer audioPlayer;
     private Playlist aktPlaylist;
     private int aktTrackNr = 0;
+    private String loadedSoundFile;
 
     public MP3Player() {
         this.minim = new SimpleMinim(true);
@@ -33,7 +34,11 @@ public class MP3Player {
 
             Track aktTrack = aktPlaylist.getTrack(aktTrackNr);
             String soundFile = aktTrack.getSoundFile();
-            audioPlayer = minim.loadMP3File(soundFile);
+            if (loadedSoundFile == null || !loadedSoundFile.equalsIgnoreCase(soundFile)) {
+                audioPlayer = minim.loadMP3File(soundFile);
+                loadedSoundFile = soundFile;
+            }
+
             audioPlayer.play();
 
         }
