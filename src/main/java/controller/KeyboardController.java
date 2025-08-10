@@ -44,10 +44,11 @@ public class KeyboardController {
                     mp3Player.pause();
                     break;
                 case "skip":
-                    mp3Player.skip();
-                    break;
-                case "skip back":
-                    mp3Player.skipBack();
+                    if (parameter != null && parameter.equalsIgnoreCase("back")) {
+                        mp3Player.skipBack();
+                    } else {
+                        mp3Player.skip();
+                    }
                     break;
 
                 case "volume":
