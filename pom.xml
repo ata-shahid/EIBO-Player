@@ -104,6 +104,22 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/tritonus_share.jar</systemPath>
         </dependency>
+
+        <dependency>
+            <groupId>javazoom</groupId>
+            <artifactId>jsminim</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jsminim.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>javazoom</groupId>
+            <artifactId>mp3ui</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/mp3ui.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
@@ -139,24 +155,23 @@
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>run-console</id>
-                        <configuration>
-                            <mainClass>com.eibo.Main</mainClass>
-                            <additionalClasspathElements>
-                                <additionalClasspathElement>${project.basedir}/lib/jl1.0.1.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.basedir}/lib/minim.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.basedir}/lib/mp3agic.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.basedir}/lib/mp3spi1.9.5.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.basedir}/lib/tritonus_aos.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.basedir}/lib/tritonus_share.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.basedir}/lib/eia_StaticScanner.jar</additionalClasspathElement>
-                                <additionalClasspathElement>${project.basedir}/lib/eia_simpleminim_v2.jar</additionalClasspathElement>
-                            </additionalClasspathElements>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <mainClass>com.eibo.Main</mainClass>
+                    <includeProjectDependencies>true</includeProjectDependencies>
+                    <includePluginDependencies>false</includePluginDependencies>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${project.basedir}/lib/jl1.0.1.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/minim.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/jsminim.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/mp3agic.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/mp3spi1.9.5.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/mp3ui.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/tritonus_aos.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/tritonus_share.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/eia_StaticScanner.jar</additionalClasspathElement>
+                        <additionalClasspathElement>${project.basedir}/lib/eia_simpleminim_v2.jar</additionalClasspathElement>
+                    </additionalClasspathElements>
+                </configuration>
             </plugin>
 
             <!-- Maven Assembly Plugin for creating fat JARs -->
