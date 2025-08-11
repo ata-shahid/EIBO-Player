@@ -40,7 +40,7 @@
             <version>${javafx.version}</version>
         </dependency>
 
-        <!-- System dependencies for your existing JAR files -->
+        <!-- System dependencies for existing JAR files -->
         <dependency>
             <groupId>com.mpatric</groupId>
             <artifactId>mp3agic</artifactId>
