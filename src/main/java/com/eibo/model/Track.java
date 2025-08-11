@@ -1,4 +1,4 @@
-package entities;
+package com.eibo.model;
 
 public class Track {
 

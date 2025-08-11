@@ -1,9 +1,9 @@
-package controller;
+package com.eibo.controller;
 
-import business.PlaylistManager;
+import com.eibo.service.PlaylistManager;
 import de.hsrm.mi.prog.util.StaticScanner;
-import entities.Playlist;
-import player.MP3Player;
+import com.eibo.model.Playlist;
+import com.eibo.service.MP3Player;
 
 public class KeyboardController {
 

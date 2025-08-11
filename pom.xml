@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.eibo</groupId>
+    <artifactId>mp3-player</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javafx.version>21.0.1</javafx.version>
+        <javafx.maven.plugin.version>0.0.8</javafx.maven.plugin.version>
+    </properties>
+
+    <dependencies>
+        <!-- JavaFX Controls -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- JavaFX Media for audio playback -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- JavaFX FXML (optional, for FXML-based UI) -->
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
+
+        <!-- System dependencies for your existing JAR files -->
+        <dependency>
+            <groupId>com.mpatric</groupId>
+            <artifactId>mp3agic</artifactId>
+            <version>0.9.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/mp3agic.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>javazoom</groupId>
+            <artifactId>jlayer</artifactId>
+            <version>1.0.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/jl1.0.1.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>ddf.minim</groupId>
+            <artifactId>minim</artifactId>
+            <version>2.2.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/minim.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>de.hsrm.mi</groupId>
+            <artifactId>eia-static-scanner</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/eia_StaticScanner.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>de.hsrm.mi</groupId>
+            <artifactId>eia-simple-minim</artifactId>
+            <version>2.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/eia_simpleminim_v2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>javazoom</groupId>
+            <artifactId>mp3spi</artifactId>
+            <version>1.9.5</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/mp3spi1.9.5.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.tritonus</groupId>
+            <artifactId>tritonus-aos</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/tritonus_aos.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.tritonus</groupId>
+            <artifactId>tritonus-share</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/tritonus_share.jar</systemPath>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Maven Compiler Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>21</source>
+                    <target>21</target>
+                </configuration>
+            </plugin>
+
+            <!-- JavaFX Maven Plugin -->
+            <plugin>
+                <groupId>org.openjfx</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>${javafx.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-cli</id>
+                        <configuration>
+                            <mainClass>com.eibo.view.JavaFXApp</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Exec Plugin for running console app with lib dependencies -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>run-console</id>
+                        <configuration>
+                            <mainClass>com.eibo.Main</mainClass>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.basedir}/lib/jl1.0.1.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.basedir}/lib/minim.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.basedir}/lib/mp3agic.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.basedir}/lib/mp3spi1.9.5.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.basedir}/lib/tritonus_aos.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.basedir}/lib/tritonus_share.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.basedir}/lib/eia_StaticScanner.jar</additionalClasspathElement>
+                                <additionalClasspathElement>${project.basedir}/lib/eia_simpleminim_v2.jar</additionalClasspathElement>
+                            </additionalClasspathElements>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Assembly Plugin for creating fat JARs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.4.2</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.eibo.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

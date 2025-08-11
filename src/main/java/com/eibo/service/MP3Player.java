@@ -1,9 +1,9 @@
-package player;
+package com.eibo.service;
 
 import de.hsrm.mi.eibo.simpleplayer.SimpleAudioPlayer;
 import de.hsrm.mi.eibo.simpleplayer.SimpleMinim;
-import entities.Playlist;
-import entities.Track;
+import com.eibo.model.Playlist;
+import com.eibo.model.Track;
 
 public class MP3Player {
     private SimpleMinim minim;

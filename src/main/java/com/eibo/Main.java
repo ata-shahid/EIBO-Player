@@ -1,4 +1,6 @@
-import controller.KeyboardController;
+package com.eibo;
+
+import com.eibo.controller.KeyboardController;
 
 public class Main {
 

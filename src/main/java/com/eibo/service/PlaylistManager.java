@@ -1,4 +1,4 @@
-package business;
+package com.eibo.service;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,8 +9,8 @@ import com.mpatric.mp3agic.InvalidDataException;
 import com.mpatric.mp3agic.Mp3File;
 import com.mpatric.mp3agic.UnsupportedTagException;
 
-import entities.Playlist;
-import entities.Track;
+import com.eibo.model.Playlist;
+import com.eibo.model.Track;
 
 public class PlaylistManager {
 
